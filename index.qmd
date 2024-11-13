@@ -1,0 +1,49 @@
+---
+title: "slide mode"
+subtitle: "Dataviz of Gapminder"
+author: "Yijia Lin"
+format: revealjs
+editor: visual
+execute: 
+  echo: true
+---
+
+## Loading data
+
+We will load the dataset `gapminder` included in the R package `{gapminder}` "---" to change slides
+
+```{r}
+library(gapminder)
+gapminder <- gapminder::gapminder
+```
+
+------------------------------------------------------------------------
+
+## Prerpocess data
+
+We will filter just data from 2007
+
+
+```{r}
+#| echo: true
+library(dplyr)
+gapminder_2007<-
+  gapminder |> 
+  filter(year==2007)
+gapminder_2007
+```
+
+---
+
+## Plot the data
+
+```{r}
+#| echo: true
+#| echo-fold: true
+library(ggplot2)
+ggplot(gapminder_2007) +
+  geom_point(aes(x = lifeExp, y = gdpPercap,
+                 color = continent)) +
+  ggthemes::scale_color_colorblind() +
+  theme_minimal()
+```
